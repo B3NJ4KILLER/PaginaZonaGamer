@@ -1,4 +1,6 @@
-
+<?php
+session_start(); // Inicia la sesión
+?>
 
 
 <!DOCTYPE html>
@@ -23,8 +25,8 @@
     <div class="container-fluid">
 
         
-
         <br>
+        
         <header class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
@@ -45,6 +47,9 @@
                         <button onclick="location.href='nosotros.php'" class="btn mx-2">Nosotros</button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" onclick="location.href='login.php'">Login</button>
+                        <?php if (isset($_SESSION['nombre'])): ?>
+                            <button onclick="location.href='logout.php'" class="btn mx-2">Cerrar sesión</button>
+                        <?php endif; ?>
 
                         <!-- Modal -->
                         <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -98,6 +103,10 @@
         </header>
 
         
+        
+        
+        
+        
 
         
 
@@ -114,6 +123,18 @@
                 </ul>
                 </div>
             </div>
+            
+            <?php if (isset($_SESSION['nombre'])): ?>
+            <div class="alert alert-primary">
+                ¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?>!
+            </div>
+            <?php else: ?>
+                <div class="alert alert-warning w-100">
+                    <i class="bi bi-info-circle"></i>
+                    <a href="login.php">Inicia sesión</a> para disfrutar de la experiencia completa.
+                </div>
+            <?php endif; ?>
+            
         </nav>
 
 

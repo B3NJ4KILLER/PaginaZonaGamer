@@ -57,30 +57,28 @@
                 
                 <form method="POST" action="">
                 <?php
+                session_start(); // Inicia la sesión
                 include('conexion.php'); 
 
                 if ($conexion->connect_errno) {
                     die("La conexión ha fallado: " . $conexion->connect_error);
                 }
 
-                
                 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iniciarbtn'])) {
                     $correo = $_POST['correo'];
                     $password = $_POST['password'];
 
-                    
-                    $stmt = $conexion->prepare("SELECT * FROM subscriptores WHERE correo = ? AND password = ?");
+                    $stmt = $conexion->prepare("SELECT nombre FROM subscriptores WHERE correo = ? AND password = ?");
                     $stmt->bind_param("ss", $correo, $password);
                     $stmt->execute();
                     $resultado = $stmt->get_result();
 
                     if ($resultado->num_rows === 1) {
-                        
-                        echo '<div class="alert alert-success">Inicio de sesión exitoso</div>';
-                        header("Location: inicio.php");
+                        $fila = $resultado->fetch_assoc();
+                        $_SESSION['nombre'] = $fila['nombre']; // Guarda el nombre del usuario en la sesión
+                        header("Location: inicio.php"); // Redirige al inicio
                         exit();
                     } else {
-                        
                         echo '<div class="alert alert-danger">Correo o contraseña incorrectos</div>';
                     }
 
