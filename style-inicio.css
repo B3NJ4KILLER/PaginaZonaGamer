@@ -1,0 +1,551 @@
+/*----------------------------FONDO ANIMADO---------------------------------*/
+
+body>video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+
+    position: fixed;
+    top: 50%;
+    transform: translateX(-15%) translateY(-50%);
+
+    z-index: -100;
+
+    background-size: cover;
+}
+
+/*-----------------------------------Container principal----------------------------------------*/
+
+
+nav {
+    width: 100%;
+    height: 12vh;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    background-color: rgba(32, 103, 202, 0.526);
+    margin-block: 10px;
+    border-radius: 15px;
+}
+
+.navbar-brand>h4 {
+    font-size: 20px;
+    color: silver;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.717);
+}
+
+form>.form-control {
+    width: 150%;
+}
+
+form>.btn {
+    width: 50%;
+    height: 7vh;
+    font-size: 15px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px 20px;
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    border-color: #0250c5;
+    color: white;
+    border-radius: 8px;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+
+form>.btn:hover {
+    border-color: white;
+    box-shadow: 10px -10px 25px 0 rgba(16, 226, 253, 0.5), -10px 10px 25px 0 rgba(183, 0, 255, 0.794);
+    color: greenyellow;
+    transform: scale(1.2);
+}
+
+header.navbar {
+    height: 25vh;
+    border-radius: 15px;
+    background-color: rgba(32, 103, 202, 0.526);
+
+}
+
+
+header h1 {
+    color: yellow;
+    font-size: 45px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+header .navbar-brand img {
+    height: 80px;
+
+}
+
+header .btn {
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px 20px;
+    background-image: linear-gradient(to top, #0250c5 0%, #d43f8d 100%);
+    border-color: #0250c5;
+    color: white;
+    border-radius: 8px;
+    transition: transform 0.5s ease, color 0.3s ease;
+
+}
+
+
+header .btn:hover {
+    border-color: white;
+    box-shadow: 10px -10px 25px 0 rgba(16, 226, 253, 0.5), -10px 10px 25px 0 rgba(183, 0, 255, 0.794);
+    color: yellow;
+    transform: scale(1.2);
+}
+
+.btn-group button {
+    width: 50%;
+    height: 7vh;
+    font-size: 15px;
+    font-family: 'Orbitron', sans-serif;
+    padding: 10px 20px;
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    border-color: #0250c5;
+    color: white;
+    border-radius: 8px;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+.img-fluid {
+    width: 100%;
+    border-radius: 10px;
+    border: 4px solid rgba(255, 3, 255, 0.498);
+
+}
+
+.container-sm {
+
+    height: 35vh;
+    align-content: center;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    border-radius: 15px;
+    margin-top: 60px;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+
+.container-sm:hover {
+    border: 2px solid white;
+    box-shadow: 10px -10px 25px 0 rgba(16, 226, 253, 0.5), -10px 10px 25px 0 rgba(183, 0, 255, 0.794);
+    transform: scale(1.1);
+}
+
+.container-sm>h5 {
+    font-size: 35px;
+    color: yellow;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'FuturisticFont';
+}
+
+.container-sm>p {
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'FuturisticFont';
+}
+
+
+.link-registro>a {
+    color: purple;
+    text-decoration: none;
+}
+
+.link-registro>a:hover {
+    text-decoration: underline;
+}
+
+
+.modal-header {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+}
+
+
+
+.modal-body {
+    background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+}
+
+.modal-content>.modal-footer {
+    background-image: linear-gradient(to top, #9890e3 0%, #5ee7df 100%);
+}
+
+
+/*----------------------------------------Carousel-----------------------------------------------------*/
+
+
+.carousel {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-block: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+
+}
+
+
+.carousel-item img {
+    height: 98vh;
+    transition: transform 2s ease;
+
+}
+
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    bottom: 20px;
+
+
+}
+
+
+.carousel-caption>h5 {
+    font-size: 35px;
+    font-family: 'FuturisticFont';
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.carousel-caption>p {
+    font-size: 23px;
+    font-family: 'FuturisticFont';
+    color: white;
+}
+
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    width: 15%;
+    padding: 0;
+    background: 0 0;
+    border: 0;
+    opacity: .5;
+    transition: opacity .15s ease;
+
+
+}
+
+
+
+/*------------------------------------Imagenes y videos----------------------------------------------*/
+
+.card {
+    background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 
+.card-img-top,
+.card video {
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 2px solid #0250c5;
+} */
+
+
+
+.card-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #0250c5;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+}
+
+.card-text {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 17px;
+    font-family: 'FuturisticFont';
+    text-align: justify;
+}
+
+
+/*------------------------------------Información CS-GO----------------------------------------------*/
+
+
+.container-xxl {
+    margin-block: 20px;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.container-xxl img {
+    height: 55vh;
+    border-radius: 0;
+    border-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%) 1;
+
+
+}
+
+.container-xxl .text-light {
+
+    color: #b3b3b3;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.container-xxl h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.66);
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.container-xxl p {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 20px;
+    font-family: 'FuturisticFont';
+    text-align: justify;
+}
+
+
+.container-xxl .bg-secondary {
+    align-content: center;
+    height: 55vh;
+    margin-bottom: 45px;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    border-radius: 10px;
+}
+
+/*------------------------------------Top de los 5 Videojuegos de 2024----------------------------------------*/
+
+.container-lg {
+    height: 90vh;
+    align-content: center;
+    border-radius: 15px;
+    background-image: linear-gradient(to top, #0250c5 0%, #d43f8d 100%);
+    margin-block: 60px;
+}
+
+.container-lg>h4 {
+    height: 20vh;
+    font-size: 35px;
+    font-family: 'Orbitron', sans-serif;
+    color: yellow;
+    align-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+}
+
+.container-lg>table {
+    background-color: #009efd;
+}
+
+table>thead {
+    font-size: 30px;
+}
+
+
+.num {
+
+    font-size: 25px;
+}
+
+table {
+    height: 45vh;
+    border-radius: 20px;
+    font-size: 20px;
+    font-family: 'FuturisticFont';
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    text-align: center;
+}
+
+/*-----------------------------------------------Progress-----------------------------------------------------*/
+
+.figure-img {
+    width: 70%;
+    border: 2px solid white;
+    border-radius: 20px;
+
+
+}
+
+.container-xl {
+    height: 80vh;
+    border: 3px solid rgb(255, 0, 255);
+    border-radius: 20px;
+    background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+    margin-block: 70px;
+    align-content: center;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+
+
+
+.container-xl:hover {
+    border: 4px solid rgb(0, 255, 221);
+    box-shadow: 10px -10px 25px 0 rgba(16, 226, 253, 0.5), -10px 10px 25px 0 rgba(183, 0, 255, 0.794);
+    transform: scale(1.02);
+}
+
+.col-6 {
+    height: 65vh;
+    align-content: center;
+    justify-content: center;
+}
+
+.col-6>h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.66);
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+#progress {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 20px;
+    font-family: 'FuturisticFont';
+    text-align: justify;
+}
+
+/*--------------------------------------------Pie de página---------------------------------------------------*/
+
+
+footer {
+    background-color: rgba(32, 103, 202, 0.526);
+    border-radius: 15px;
+    margin-block: 20px;
+}
+
+
+footer h3,
+footer h4 {
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 10px;
+}
+
+#zgamer {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 17px;
+
+}
+
+
+.col-md-3 a {
+    color: #d1d1d1;
+    text-decoration: none;
+
+}
+
+
+
+footer .col-md-3>a:hover {
+    color: red;
+    border-radius: 10px;
+    box-shadow: 10px -10px 25px 0 rgba(255, 0, 0, 0.5), -10px 10px 25px 0 rgba(255, 0, 0, 0.8);
+    text-decoration: underline;
+
+}
+
+
+.bi:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+.negro {
+    margin-right: 60px;
+}
+
+.negro>a {
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+
+}
+
+.d-flex,
+.negro>a:hover {
+    transition: .5s;
+    color: black;
+    text-decoration: none;
+
+}
+
+
+.rosado>a {
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+}
+
+.d-flex,
+.rosado>a:hover {
+    transition: .5s;
+    color: rgb(237, 7, 122);
+    text-decoration: none;
+}
+
+
+.morado {
+    margin-left: 60px;
+}
+
+.morado>a {
+    font-size: 35px;
+    color: white;
+    text-decoration: none;
+
+}
+
+.d-flex,
+.morado>a:hover {
+    transition: .5s;
+    color: purple;
+    text-decoration: none;
+}
+
+
+
+.text-center {
+    font-size: 20px;
+    margin-top: 20px;
+    color: #d1d1d1;
+}
