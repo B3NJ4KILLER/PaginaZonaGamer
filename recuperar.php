@@ -1,3 +1,34 @@
+<?php
+include('conexion.php'); 
+$message = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
+    $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
+
+    if ($correo) {
+        $stmt = $conexion->prepare("SELECT correo FROM subscriptores WHERE correo = ?");
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows > 0) {
+            
+            header("Location: recuperar2.php?correo=" . urlencode($correo));
+            exit();
+        } else {
+            $message = "El correo ingresado no está registrado.";
+        }
+
+        $stmt->close();
+    } else {
+        $message = "Por favor, ingresa un correo válido.";
+    }
+
+    $conexion->close();
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -54,37 +85,7 @@
                     <h2>Recuperar contraseña</h2>
                 </div>
 
-                <?php
-                include('conexion.php');
-                $message = '';
-
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
-                    $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
-
-                    if ($correo) {
-                        
-                        $stmt = $conexion->prepare("SELECT correo FROM subscriptores WHERE correo = ?");
-                        $stmt->bind_param("s", $correo);
-                        $stmt->execute();
-                        $resultado = $stmt->get_result();
-
-                        if ($resultado->num_rows > 0) {
-                            
-                            header("Location: recuperar2.php");
-                            exit();
-                        } else {
-                            
-                            $message = "El correo no está registrado.";
-                        }
-
-                        $stmt->close();
-                    } else {
-                        $message = "Por favor, ingresa un correo válido.";
-                    }
-
-                    $conexion->close();
-                }
-                ?>
+                
 
                 
                 <form method="POST" action="">
@@ -94,10 +95,13 @@
                         <div class="input-group">
                             
                             <div class="input-group-text">@</div>
-                            <input name="correo" type="text" class="form-control" id="autoSizingInputGroup"
+                            <input name="correo" type="email" class="form-control" id="correo"
                                 placeholder="Correo electrónico" required>
                         </div>
                     </div>
+                    <?php if (!empty($message)): ?>
+                        <div class="alert alert-danger"><?php echo htmlspecialchars($message); ?></div>
+                    <?php endif; ?>
 
                     <div class="login-button">
                         <button name="iniciarbtn" type="submit" class="btn1">

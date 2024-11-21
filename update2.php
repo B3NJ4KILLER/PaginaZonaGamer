@@ -1,23 +1,18 @@
 <?php
 include('conexion.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password'];
 
-    
-    $query = "UPDATE subscriptores SET password = ? WHERE id = ?";
-
-    $stmt = $conexion->prepare($query);
-
-    if ($stmt) {
+    if ($correo && $password) {
         
-        $stmt->bind_param("si", $password, $id);
+        $stmt = $conexion->prepare("UPDATE subscriptores SET password = ? WHERE correo = ?");
+        $stmt->bind_param("ss", $password, $correo);
 
-        
         if ($stmt->execute()) {
             
-            header("Location: subscriptores.php");
+            header("Location: login.php");
             exit();
         } else {
             echo "Error al actualizar la contraseña: " . $stmt->error;
@@ -25,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt->close();
     } else {
-        echo "Error al preparar la consulta: " . $conexion->error;
+        echo "Por favor, completa todos los campos.";
     }
 
     $conexion->close();

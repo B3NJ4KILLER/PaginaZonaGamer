@@ -1,31 +1,31 @@
 <?php
 include('conexion.php');
 
-$nombre = $apellidos = $usuario = $telefono = $correo = $genero = $fecha = $direccion = $numdepa = $password = "";
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    
-    $query = "SELECT * FROM subscriptores WHERE correo='$correo'";
-    $result = $conexion->query($query);
-
-    if ($result && $result->num_rows > 0) {
-        $fila = $result->fetch_assoc();
-        $nombre = $fila['nombre'];
-        $apellidos = $fila['apellidos'];
-        $usuario = $fila['usuario'];
-        $telefono = $fila['telefono'];
-        $correo = $fila['correo'];
-        $genero = $fila['genero'];
-        $fecha = $fila['fecha'];
-        $direccion = $fila['direccion'];
-        $numdepa = $fila['numdepa'];
-        $password = $fila['password'];
-         
-    }
+if (!isset($_GET['correo']) || empty($_GET['correo'])) {
+    header("Location: recuperar.php");
+    exit();
 }
+
+$correo = filter_input(INPUT_GET, 'correo', FILTER_SANITIZE_EMAIL);
+
+
+$stmt = $conexion->prepare("SELECT correo FROM subscriptores WHERE correo = ?");
+$stmt->bind_param("s", $correo);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows == 0) {
+    header("Location: recuperar.php");
+    exit();
+}
+
+$stmt->close();
+$conexion->close();
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -103,29 +103,29 @@ if (isset($_GET['id'])) {
 
 
 
-        <!------------------------------------------REGISTRO--------------------------------------------->
+        <!------------------------------------------RENOVAR CONTRASEÑA--------------------------------------------->
 
 
         <div class="row d-flex justify-content-center align-items-center">
         
             <div class="col-md-6"><br><br>
                 <h2>Ingrese nueva contraseña</h2><br><br>
-                <form method="POST" action="update2.php">
+                <form method="POST" action="update2.php" id="updateForm">
+                    
+                    <input type="hidden" name="correo" value="<?php echo htmlspecialchars($correo); ?>">
 
                     
-
-                
-                    <div class="mb-3 row">
-                        <div class="col">
-                            <input type="password" class="form-control" placeholder="Contraseña" name="password" value="<?php echo $password; ?>" required>
-                        </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Nueva contraseña</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Nueva contraseña" required>
                     </div>
 
+                    
                     <div class="text-center">
-                        <button type="button" class="btn1" data-bs-toggle="modal" data-bs-target="#confirmModal">Registrar</button>
+                        <button type="button" class="btn1 btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">Guardar</button>
                     </div>
 
-                    <!-- Modal -->
+                   
                     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -134,20 +134,17 @@ if (isset($_GET['id'])) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    ¿Estás seguro de que deseas guardar la contraseña?
+                                    ¿Estás seguro de que deseas guardar la nueva contraseña?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-
-
-                
-
             </div>
         </div>
 
