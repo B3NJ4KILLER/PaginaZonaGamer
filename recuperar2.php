@@ -1,4 +1,31 @@
+<?php
+include('conexion.php');
 
+$nombre = $apellidos = $usuario = $telefono = $correo = $genero = $fecha = $direccion = $numdepa = $password = "";
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    
+    $query = "SELECT * FROM subscriptores WHERE correo='$correo'";
+    $result = $conexion->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $fila = $result->fetch_assoc();
+        $nombre = $fila['nombre'];
+        $apellidos = $fila['apellidos'];
+        $usuario = $fila['usuario'];
+        $telefono = $fila['telefono'];
+        $correo = $fila['correo'];
+        $genero = $fila['genero'];
+        $fecha = $fila['fecha'];
+        $direccion = $fila['direccion'];
+        $numdepa = $fila['numdepa'];
+        $password = $fila['password'];
+         
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +110,7 @@
         
             <div class="col-md-6"><br><br>
                 <h2>Ingrese nueva contraseña</h2><br><br>
-                <form method="POST" action="update.php">
+                <form method="POST" action="update2.php">
 
                     
 
