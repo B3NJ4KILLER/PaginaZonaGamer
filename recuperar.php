@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style-login.css">
+    <title>Recuperación de contraseña</title>
+    <link rel="stylesheet" href="style-recuperar.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -45,52 +45,52 @@
                 </div>
             </div>
         </header>
-        <!-------------------------------------Login------------------------------------------------->
+        <!---------------------------------------Recuperar contraseña----------------------------------------------->
 
         <div class="row login justify-content-center">
 
             <div class="col-md-6">
                 <div class="titulo">
-                    <h2>LOGIN</h2>
+                    <h2>Recuperar contraseña</h2>
                 </div>
+
+                <?php
+                include('conexion.php');
+                $message = '';
+
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
+                    $correo = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
+
+                    if ($correo) {
+                        
+                        $stmt = $conexion->prepare("SELECT correo FROM subscriptores WHERE correo = ?");
+                        $stmt->bind_param("s", $correo);
+                        $stmt->execute();
+                        $resultado = $stmt->get_result();
+
+                        if ($resultado->num_rows > 0) {
+                            
+                            header("Location: recuperar2.php");
+                            exit();
+                        } else {
+                            
+                            $message = "El correo no está registrado.";
+                        }
+
+                        $stmt->close();
+                    } else {
+                        $message = "Por favor, ingresa un correo válido.";
+                    }
+
+                    $conexion->close();
+                }
+                ?>
 
                 
                 <form method="POST" action="">
-                <?php
-                session_start(); 
-                include('conexion.php'); 
-
-                if ($conexion->connect_errno) {
-                    die("La conexión ha fallado: " . $conexion->connect_error);
-                }
-
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
-                    $correo = $_POST['correo'];
-                    $password = $_POST['password'];
-
-                    $stmt = $conexion->prepare("SELECT nombre FROM subscriptores WHERE correo = ? AND password = ?");
-                    $stmt->bind_param("ss", $correo, $password);
-                    $stmt->execute();
-                    $resultado = $stmt->get_result();
-
-                    if ($resultado->num_rows == 1) {
-                        $fila = $resultado->fetch_assoc();
-                        $_SESSION['nombre'] = $fila['nombre']; 
-                        header("Location: inicio.php");
-                        exit();
-                    } else {
-                        echo '<div class="alert alert-danger">Correo o contraseña incorrectos</div>';
-                    }
-
-                    $stmt->close();
-                }
-
-                $conexion->close();
-                ?>
-                
                     
                     <div class="mb-3">
-                        
+                        <li>Ingrese su correo para recuperar su contraseña</li>
                         <div class="input-group">
                             
                             <div class="input-group-text">@</div>
@@ -99,24 +99,12 @@
                         </div>
                     </div>
 
-
-                    <div class="mb-3 row">
-                        <div class="col pass">
-                            <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
-                        </div>
-                    </div>
-
                     <div class="login-button">
                         <button name="iniciarbtn" type="submit" class="btn1">
-                            INICIAR
+                            enviar
                         </button>
                     </div>
-                    <div class="link-registro">
-                        <a href="registro2.php">No tienes cuenta? Resgistrate</a>
-                    </div><br>
-                    <div class="link-registro">
-                        <a href="recuperar.php">¿Olvidaste tu contraseña?</a>
-                    </div>
+                    
                     
 
                 </form>

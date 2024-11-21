@@ -1,27 +1,49 @@
 
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style-login.css">
+    <title>Recuperar contraseña 2</title>
+    <link rel="stylesheet" href="style-recuperar2.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 
 <body>
 
+    <!------------------------------------FONDO ANIMADO--------------------------------------------->
     <video src="fondo.mp4" autoplay preload muted loop></video>
 
     <!---------------------------------------Container principal-------------------------------------->
     <div class="container-fluid">
 
-        <br>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <h4>Busca tu videojuego</h4>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <form class="d-flex ms-auto" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar en Zona Gamer"
+                            aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+
         <header class="navbar navbar-expand-lg mb-5">
             <div class="container-fluid">
 
@@ -45,95 +67,71 @@
                 </div>
             </div>
         </header>
-        <!-------------------------------------Login------------------------------------------------->
 
-        <div class="row login justify-content-center">
+        <!-------------------------------------Banner------------------------------------------------->
 
-            <div class="col-md-6">
-                <div class="titulo">
-                    <h2>LOGIN</h2>
-                </div>
 
-                
-                <form method="POST" action="">
-                <?php
-                session_start(); 
-                include('conexion.php'); 
+        <img src="banner.webp" class="img-fluid" alt="banner">
 
-                if ($conexion->connect_errno) {
-                    die("La conexión ha fallado: " . $conexion->connect_error);
-                }
 
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
-                    $correo = $_POST['correo'];
-                    $password = $_POST['password'];
 
-                    $stmt = $conexion->prepare("SELECT nombre FROM subscriptores WHERE correo = ? AND password = ?");
-                    $stmt->bind_param("ss", $correo, $password);
-                    $stmt->execute();
-                    $resultado = $stmt->get_result();
 
-                    if ($resultado->num_rows == 1) {
-                        $fila = $resultado->fetch_assoc();
-                        $_SESSION['nombre'] = $fila['nombre']; 
-                        header("Location: inicio.php");
-                        exit();
-                    } else {
-                        echo '<div class="alert alert-danger">Correo o contraseña incorrectos</div>';
-                    }
+        <!------------------------------------------REGISTRO--------------------------------------------->
 
-                    $stmt->close();
-                }
 
-                $conexion->close();
-                ?>
-                
+        <div class="row d-flex justify-content-center align-items-center">
+        
+            <div class="col-md-6"><br><br>
+                <h2>Ingrese nueva contraseña</h2><br><br>
+                <form method="POST" action="update.php">
+
                     
-                    <div class="mb-3">
-                        
-                        <div class="input-group">
-                            
-                            <div class="input-group-text">@</div>
-                            <input name="correo" type="text" class="form-control" id="autoSizingInputGroup"
-                                placeholder="Correo electrónico" required>
-                        </div>
-                    </div>
 
-
+                
                     <div class="mb-3 row">
-                        <div class="col pass">
-                            <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
+                        <div class="col">
+                            <input type="password" class="form-control" placeholder="Contraseña" name="password" value="<?php echo $password; ?>" required>
                         </div>
                     </div>
 
-                    <div class="login-button">
-                        <button name="iniciarbtn" type="submit" class="btn1">
-                            INICIAR
-                        </button>
+                    <div class="text-center">
+                        <button type="button" class="btn1" data-bs-toggle="modal" data-bs-target="#confirmModal">Registrar</button>
                     </div>
-                    <div class="link-registro">
-                        <a href="registro2.php">No tienes cuenta? Resgistrate</a>
-                    </div><br>
-                    <div class="link-registro">
-                        <a href="recuperar.php">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmModalLabel">Confirmar Cambios</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Estás seguro de que deseas guardar la contraseña?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
+
+
+                
+
             </div>
         </div>
 
 
 
-
         <!-------------------------------------Pie de Pagina------------------------------------------------>
-
         <footer class="container-fluid py-4">
             <div class="row">
                 <div class="col-md-3">
                     <h3>Zona Gamer</h3>
-                    <p id="zgamer">Zona Gamer es el destino definitivo para los aficionados de los juegos en línea
-                        más
+                    <p id="zgamer">Zona Gamer es el destino definitivo para los aficionados de los juegos en línea más
                         populares.</p>
                 </div>
 
@@ -171,12 +169,8 @@
                             </div>
                             <p class="mb-1">Obten aplicaciones y juegos de confianza con microsoft.</p>
                         </a>
-
                     </div>
-
                 </div>
-
-
             </div>
 
             <div class="d-flex justify-content-center mt-4">
@@ -207,8 +201,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+
 </body>
 
 </html>
