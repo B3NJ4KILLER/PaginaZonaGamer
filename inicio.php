@@ -1,10 +1,10 @@
 <?php
-session_start(); // Inicia la sesión
+session_start();
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -103,38 +103,33 @@ session_start(); // Inicia la sesión
         </header>
 
         
-        
-        
-        
-        
-
-        
 
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-            <div class="btn">
-                <button type="button" class="btn btn-info">Panel de Control de usuarios</button>
-                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="subscriptores.php">Subscriptores</a></li>
-                    <li><a class="dropdown-item" href="#">Videojuegos a la venta</a></li>
-                </ul>
+            <div class="container-fluid d-flex justify-content-center align-items-center">
+                <div class="btn me-auto"> 
+                    <button type="button" class="btn btn-info">Panel de Control de usuarios</button>
+                    <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="subscriptores.php">Subscriptores</a></li>
+                        <li><a class="dropdown-item" href="#">Videojuegos a la venta</a></li>
+                    </ul>
                 </div>
-            </div>
-            
-            <?php if (isset($_SESSION['nombre'])): ?>
-            <div class="alert alert-primary">
-                ¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?>!
-            </div>
-            <?php else: ?>
-                <div class="alert alert-warning w-100">
+                
+                
+                <?php if (isset($_SESSION['nombre'])): ?>
+                <div class="alert text-center w-50">
+                    <i class="bi bi-person-circle"></i>
+                    ¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?>!
+                </div>
+                <?php else: ?>
+                <div class="alert text-center w-50">
                     <i class="bi bi-info-circle"></i>
-                    <a href="login.php">Inicia sesión</a> para disfrutar de la experiencia completa.
+                    <a href="login.php">Inicia sesión</a> para disfrutar la experiencia.
                 </div>
-            <?php endif; ?>
-            
+                <?php endif; ?>
+            </div>
         </nav>
 
 

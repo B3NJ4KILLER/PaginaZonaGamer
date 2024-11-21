@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -64,7 +64,7 @@
                     die("La conexión ha fallado: " . $conexion->connect_error);
                 }
 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['iniciarbtn'])) {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['iniciarbtn'])) {
                     $correo = $_POST['correo'];
                     $password = $_POST['password'];
 
@@ -73,7 +73,7 @@
                     $stmt->execute();
                     $resultado = $stmt->get_result();
 
-                    if ($resultado->num_rows === 1) {
+                    if ($resultado->num_rows == 1) {
                         $fila = $resultado->fetch_assoc();
                         $_SESSION['nombre'] = $fila['nombre']; // Guarda el nombre del usuario en la sesión
                         header("Location: inicio.php"); // Redirige al inicio
@@ -88,19 +88,21 @@
                 $conexion->close();
                 ?>
                 
+                    
                     <div class="mb-3">
-                        <label class="visually-hidden" for="autoSizingInputGroup">Email</label>
+                        
                         <div class="input-group">
+                            
                             <div class="input-group-text">@</div>
                             <input name="correo" type="text" class="form-control" id="autoSizingInputGroup"
-                                placeholder="Correo electrónico">
+                                placeholder="Correo electrónico" required>
                         </div>
                     </div>
 
 
                     <div class="mb-3 row">
                         <div class="col pass">
-                            <input name="password" type="password" class="form-control" placeholder="Contraseña">
+                            <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
                         </div>
                     </div>
 
@@ -112,6 +114,7 @@
                     <div class="link-registro">
                         <a href="registro2.php">No tienes cuenta? Resgistrate</a>
                     </div>
+                    
 
                 </form>
             </div>
