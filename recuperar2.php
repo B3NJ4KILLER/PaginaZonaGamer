@@ -116,7 +116,7 @@ $conexion->close();
 
                     
                     <div class="mb-3">
-                        <label for="password" class="form-label">Nueva contraseña</label>
+                        
                         <input type="password" class="form-control" name="password" id="password" placeholder="Nueva contraseña" required>
                     </div>
 
