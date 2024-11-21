@@ -19,7 +19,7 @@
     <!---------------------------------------Container principal-------------------------------------->
     <div class="container-fluid">
 
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand">
                     <h4>Busca tu videojuego</h4>
@@ -38,9 +38,9 @@
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
-
+        <br>
         <header class="navbar navbar-expand-lg mb-5">
             <div class="container-fluid">
 

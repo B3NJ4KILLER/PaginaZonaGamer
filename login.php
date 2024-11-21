@@ -57,7 +57,7 @@
                 
                 <form method="POST" action="">
                 <?php
-                session_start(); // Inicia la sesión
+                session_start(); 
                 include('conexion.php'); 
 
                 if ($conexion->connect_errno) {
@@ -75,8 +75,8 @@
 
                     if ($resultado->num_rows == 1) {
                         $fila = $resultado->fetch_assoc();
-                        $_SESSION['nombre'] = $fila['nombre']; // Guarda el nombre del usuario en la sesión
-                        header("Location: inicio.php"); // Redirige al inicio
+                        $_SESSION['nombre'] = $fila['nombre']; 
+                        header("Location: inicio.php");
                         exit();
                     } else {
                         echo '<div class="alert alert-danger">Correo o contraseña incorrectos</div>';
